@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using BASSdotNET;
+using AnyConsole;
+using System.Drawing;
 
 namespace BASSdotNetExample
 {
@@ -32,6 +34,21 @@ namespace BASSdotNetExample
         }
         static void Main(string[] args)
         {
+            var console = new ExtendedConsole();
+            console.Configure(config =>
+            {
+                config.SetStaticRow("Header", RowLocation.Top, Color.White, Color.DarkRed);
+                config.SetStaticRow("SubHeader", RowLocation.Top, 1, Color.White, Color.FromArgb(30, 30, 30));
+                config.SetStaticRow("Footer", RowLocation.Bottom, Color.White, Color.DarkBlue);
+                config.SetLogHistoryContainer(RowLocation.Top, 2);
+                config.SetUpdateInterval(TimeSpan.FromMilliseconds(100));
+                config.SetMaxHistoryLines(1000);
+                config.SetQuitHandler((consoleInstance) => {
+                    Console.Write("Quiting...");
+                    Environment.Exit(3021);
+                });
+            });
+            console.Start();
             Console.WriteLine("Hello World from BASS.NET Library!!!");
             BASS bass = new BASS();
             if(bass.Init_Bass(-1, 48000, 0, 0, 0))
@@ -46,12 +63,8 @@ namespace BASSdotNetExample
                         Console.WriteLine("BASS.DLL IS FAILED TO CREATING FILE STREAM!!!");
                         Environment.Exit(323);
                     }
-                    //Console.WriteLine(str); //This is Not Necessary, if you cannot Initializating WAV Sound or MP3 Sound 
                     bass.ChannelPlay(str, false);
-                    while(true)
-                    {
-                        Thread.Sleep(4000);
-                    }
+                    console.WaitForClose();
                 }
             }
         }
