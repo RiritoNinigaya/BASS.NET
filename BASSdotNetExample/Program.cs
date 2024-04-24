@@ -46,7 +46,7 @@ namespace BASSdotNetExample
                         Console.WriteLine("BASS.DLL IS FAILED TO CREATING FILE STREAM!!!");
                         Environment.Exit(323);
                     }
-                    Console.WriteLine(str);
+                    //Console.WriteLine(str); //This is Not Necessary, if you cannot Initializating WAV Sound or MP3 Sound 
                     bass.ChannelPlay(str, false);
                     while(true)
                     {
