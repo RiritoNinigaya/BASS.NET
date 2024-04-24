@@ -62,7 +62,7 @@ namespace BASSdotNET
             UInt32 fx = BASS_StreamCreateFile(m, file_name, offs, length_filename, flag);
             if(fx == 0)
             {
-                return 0; //Returning Zero if BASS Is Not Creating File :D
+                return 0; //Returning Zero if BASS.dll Library Is Not Initializating Stream File :D
             }
             return fx;
         }
