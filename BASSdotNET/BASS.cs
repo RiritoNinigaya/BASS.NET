@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -22,7 +22,7 @@ namespace BASSdotNET
         public static extern UInt32 BASS_StreamCreateFile(int mem, string filename, int offset, int length, int flags);
 
         [DllImport(@"bass.dll")]
-        public static extern void BASS_ChannelPlay(int handle, bool restart);
+        public static extern void BASS_ChannelPlay(UInt32 handle, bool restart);
 
         public bool Init_Bass(int dev_id, Int32 frequence, Int32 flags_bass ,int windows, int dsGUID)
         {
@@ -66,7 +66,7 @@ namespace BASSdotNET
             }
             return fx;
         }
-        public void ChannelPlay(int hx, bool restart_music)
+        public void ChannelPlay(UInt32 hx, bool restart_music)
         {
             BASS_ChannelPlay(hx, restart_music);
         }
