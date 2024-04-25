@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -7,22 +8,35 @@ using System.Threading.Tasks;
 
 namespace BASSdotNET
 {
+    public class Str
+    {
+        public string get_resourcefolder()
+        {
+            StringRes resource = new StringRes();
+            return resource.GetBASS();
+        }
+    }
     public class BASS
     {
-        [DllImport(@"bass.dll")]
+        string xz()
+        {
+            Str stringxz = new Str();
+            return stringxz.get_resourcefolder();
+        }
+        [DllImport("C:\\BassLib\\bass.dll")]
         public static extern bool BASS_Start(); //BASS START
 
-        [DllImport(@"bass.dll")]
-        public static extern bool BASS_Stop();
+        [DllImport("C:\\BassLib\\bass.dll")]
+        public static extern bool BASS_Stop(); //Stopping BASS Sound File
 
-        [DllImport(@"bass.dll")]
-        public static extern bool BASS_Init(int device, Int32 freq, Int32 flags, int win, int dsguid);
+        [DllImport("C:\\BassLib\\bass.dll")]
+        public static extern bool BASS_Init(int device, Int32 freq, Int32 flags, int win, int dsguid); //Initializating BASS
 
-        [DllImport(@"bass.dll")]
-        public static extern UInt32 BASS_StreamCreateFile(int mem, string filename, int offset, int length, int flags);
+        [DllImport("C:\\BassLib\\bass.dll")]
+        public static extern UInt32 BASS_StreamCreateFile(int mem, string filename, int offset, int length, int flags); //Creating Stream File :D
 
-        [DllImport(@"bass.dll")]
-        public static extern void BASS_ChannelPlay(UInt32 handle, bool restart);
+        [DllImport("C:\\BassLib\\bass.dll")]
+        public static extern void BASS_ChannelPlay(UInt32 handle, bool restart); //Calling C Programming Function for Playing Sound File :D
 
         public bool Init_Bass(int dev_id, Int32 frequence, Int32 flags_bass ,int windows, int dsGUID)
         {
