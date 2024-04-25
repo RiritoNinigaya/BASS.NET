@@ -8,21 +8,8 @@ using System.Threading.Tasks;
 
 namespace BASSdotNET
 {
-    public class Str
-    {
-        public string get_resourcefolder()
-        {
-            StringRes resource = new StringRes();
-            return resource.GetBASS();
-        }
-    }
     public class BASS
     {
-        string xz()
-        {
-            Str stringxz = new Str();
-            return stringxz.get_resourcefolder();
-        }
         [DllImport("C:\\BassLib\\bass.dll")]
         public static extern bool BASS_Start(); //BASS START
 
