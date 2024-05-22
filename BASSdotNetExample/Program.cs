@@ -52,13 +52,14 @@ namespace BASSdotNetExample
             console.Title = "BASS.NET Example Console Edition by RiritoNinigaya";
             Console.WriteLine("Hello World from BASS.NET Library!!!");
             BASS bass = new BASS();
+            int bass_sampleloop = 0x4;
             if(bass.Init_Bass(-1, 48000, 0, 0, 0))
             {
                 Console.WriteLine("Initializated Successfully");
                 if (bass.START())
                 {
                     Console.WriteLine("STARTED!!!");
-                    UInt32 str = bass.CreateBASS_FileStream(0, Utf16ToUtf8("SixFeetUnderground.mp3"), 0, 0, 0x4);
+                    UInt32 str = bass.CreateBASS_FileStream(0, Utf16ToUtf8("SixFeetUnderground.mp3"), 0, 0, bass_sampleloop);
                     if(str == 0)
                     {
                         Console.WriteLine("BASS.DLL IS FAILED TO CREATING FILE STREAM!!!");
